@@ -1,0 +1,29 @@
+net-community            1.2.7.0-1vmw.700.1.0.15843807  VMW        3/10/2022 9:2...
+vmkusb-nic-fling         1.10-1vmw.703.0.50.55634242    VMW        5/5/2022 3:35..
+vmkusb-nic-fling         1.10-1vmw.703.0.50.55634242
+vmkusb-nic-fling.
+
+
+vmkusb-nic-fling         1.8-3vmw.703.0.15.51233328
+ESXi-7.0U3g-20328353-standard
+
+
+New-EsxImageProfile -CloneProfile ESXi-7.0U3g-20328353-standard -Name ESXI-modified -Vendor Protectli
+
+ESXi7.0-Protectli
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+
+Export-EsxImageProfile -ImageProfile ESXI-modified -ExportToIso ESXi7-OU3g_install.iso
+
+Remove-EsxSoftwarePackage -SoftwarePackage usb-nic-fling -ImagePofile ESXi7.0-Protectli
+
+vmkusb-nic-fling
+Add-EsxSoftwarePackage -ImageProfile ESXi7.0-Protectli -SoftwarePackage vmkusb-nic-fling
+
+
+
+Add-EsxSoftwarePackage -ImageProfile ESXI-modified -SoftwarePackage net-community
+
+Get-ChildItem -Path 'C:\Program Files\WindowsPowerShell\Modules' -Recurse | Unblock-File
